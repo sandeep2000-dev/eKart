@@ -19,12 +19,15 @@ router.post('/books', async (req, res) => {
     description: req.body.description,
     booktype: req.body.type,
     price: req.body.price,
+    condition: req.body.condition,
+    seller: req.user.id,
   });
 
   saveCover( book, req.body.cover );
+
   try{
     const newBook = await book.save();
-    res.redirect('/books');
+    res.redirect(`/books/${newBook.booktype}/${newBook.id}`);
   }catch{
     res.render("sell/books/listing_form", { title: "Sell", book, errorMessage: "Error creating book" });
   }

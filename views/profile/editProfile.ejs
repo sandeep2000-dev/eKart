@@ -1,0 +1,18 @@
+<div class = "container d-flex align-items-center min-vh-50">
+    <div class = "mx-auto w-50 p-5 shadow" style="background-color:#d9ddde;">
+        <h1>Edit Profile</h1>
+        <br>
+        <% if( locals.errorMessage != null ) { %>
+        <p><%=errorMessage%></p>
+        <% } %>
+        <form action = '/profile/edit?_method=PUT' method = 'POST'>
+            <div class = "pb-2">
+                <label for = "name">Name</label>
+                <input type = "text" class = "form-control" placeholder="Enter Name" name = "name" id = "name" value = "<%=user.name%>">
+            </div>
+            <button type = "submit" class = "btn btn-primary">Update</button>
+            <a class = "btn btn-danger" href = "/profile">Cancel</a>
+            <br><br>
+        </form>
+    </div>  
+</div>

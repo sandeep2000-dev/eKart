@@ -8,7 +8,9 @@ const bookSchema = mongoose.Schema({
   coverImageType: { type: String, required: true},
   booktype: { type: String },
   price: { type: Number, required: true },
-  createdAt: {type: Date, default: Date.now}
+  condition: {type: String, required: true},
+  createdAt: {type: Date, default: Date.now},
+  seller: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
 });
 
 bookSchema.virtual('coverImagePath').get(function() {
@@ -17,4 +19,4 @@ bookSchema.virtual('coverImagePath').get(function() {
   }
 });
 
-module.exports = mongoose.model("book", bookSchema);
+module.exports = mongoose.model("Book", bookSchema);

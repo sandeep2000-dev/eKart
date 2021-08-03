@@ -1,0 +1,11 @@
+<div class = "container-fluid">
+    <% if( books.length != 0 ) { %>
+    <h1><%= books[0].booktype %> Books</h1>
+    <br>
+    <% books.forEach( book => { %>
+            <a href = "/books/<%= book.booktype %>/<%=book.id%>" > <img src= <%= book.coverImagePath %> height="250" alt="Image"> </a>
+            <h3><%= book.title %></h3>
+    <% }); } else { %>
+    <h1>No books yet</h1>
+    <% } %>
+</div>

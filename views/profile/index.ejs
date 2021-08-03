@@ -1,0 +1,20 @@
+<div class="container w-75 mx-auto">
+    <h3>Name : <%= user.name %></h1>
+    <h3>Email : <%= user.email %></h3>
+    <a class = "btn btn-primary" href = "/profile/edit">Edit</a>
+    <br><br>
+    <h2>List of Products you are selling </h2>
+    <% if( books.length != 0 ) { %>
+    <h3>Books: </h3>
+    <div>
+        <% books.forEach(book => { %>
+            <a href = "/books/<%=book.booktype%>/<%=book.id%>" > <img src= <%= book.coverImagePath %> height="150" alt="Image"> </a>
+            <h3><%= book.title %></h3>
+            <a class="btn btn-primary" href="/books/<%=book.booktype%>/<%=book.id%>/edit">Edit</a>
+            <%- include("../partials/delete_form", {url : `/books/${book.booktype}/${book.id}`}) %>
+            <br><br>
+        <% }); %>
+    </div>
+    <% } %>
+    
+</div>

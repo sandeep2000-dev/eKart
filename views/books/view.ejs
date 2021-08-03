@@ -1,0 +1,17 @@
+<div class="container">
+    <div>
+        <img src="<%= book.coverImagePath%>" height = "300"/>
+    </div>
+    <div>
+        <h1>Book Details<h1>
+        <h1>Title: <%= book.title %></h1>
+        <h3>Author Name: <%= book.author %> </h3>
+        <h3>description: <%= book.description %> </h3>
+        <h3>Condition: <%= book.condition %> </h3>
+        <h1>Price: Rs <%= book.price %> </h1>
+    </div>
+    <div>
+        <h1>Seller details</h1>
+        <h2>Name: <%= book.seller.name %></h2>
+    </div>
+</div>

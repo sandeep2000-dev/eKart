@@ -13,10 +13,14 @@
     <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
     <script defer src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
     <script defer src="/js/fileUpload.js"></script>
+    <% if( locals.title != null) { %>
     <title><%= title %></title>
+    <% } else { %>
+    <title>ekart</title>
+    <% } %>
   </head>
   <body>
-    <% if( title !== "Login" && title !== "Register" ) { %> <%-
+    <% if( locals.title !== "Login" && locals.title !== "Register" ) { %> <%-
     include("../partials/header.ejs") %> <% } %>
     <br>
     <%- body %>

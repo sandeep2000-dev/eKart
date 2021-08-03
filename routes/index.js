@@ -8,7 +8,7 @@ const checkAuthenticated = (req, res, next) =>{
 }
 
 router.get('/', checkAuthenticated, (req, res) =>{
-    res.render('index', {title: "Home"});
+    res.render('index', {title: "Home", user: req.user});
 });
 
 module.exports = router;

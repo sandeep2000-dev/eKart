@@ -22,8 +22,8 @@ initializePassport(
   (email) => {
     return User.findOne({ email: email });
   },
-  (id) => {
-    return User.find({ id: id });
+  (id) => {  
+    return User.findById(id);
   }
 );
 
@@ -37,6 +37,7 @@ const SGRouter = require("./routes/sportingGoods");
 const CARouter = require("./routes/collectables&Art");
 const othersRouter = require("./routes/others");
 const sellRouter = require("./routes/sell");
+const profileRouter = require("./routes/profile");
 
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
@@ -44,6 +45,7 @@ app.set("layout", "layouts/layout");
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(flash());
 app.use(
   session({
@@ -66,16 +68,7 @@ app.use("/sportingGoods", SGRouter);
 app.use("/collectables&art", CARouter);
 app.use("/others", othersRouter);
 app.use("/sell", sellRouter);
-
-app.get("/users", (req, res) => {
-  User.find()
-    .then((users) => {
-      res.send(users);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+app.use("/profile", profileRouter);
 
 app.delete("/logout", (req, res) => {
   req.logOut();
