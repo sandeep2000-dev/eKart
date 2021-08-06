@@ -38,6 +38,7 @@ const CARouter = require("./routes/collectables&Art");
 const othersRouter = require("./routes/others");
 const sellRouter = require("./routes/sell");
 const profileRouter = require("./routes/profile");
+const cartRouter = require("./routes/cart");
 
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
@@ -69,6 +70,7 @@ app.use("/collectables&art", CARouter);
 app.use("/others", othersRouter);
 app.use("/sell", sellRouter);
 app.use("/profile", profileRouter);
+app.use("/cart", cartRouter);
 
 app.delete("/logout", (req, res) => {
   req.logOut();

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/Book');
+const User = require('../models/User');
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
 router.get('/', (req, res) => {
@@ -19,9 +20,13 @@ router.get('/:type',async (req, res) => {
 router.get('/:type/:id', async (req, res) => {
     try{
         const book = await Book.findById(req.params.id).populate('seller').exec();
-        res.render('books/view', {title: book.title, book: book});
+        const user = await User.findById(req.user.id);
+        let added;
+        if( user.id === book.seller.id ) added = true;
+        else added = user.cart.books.includes(req.params.id);
+        res.render('books/view', {title: book.title, added: added, book: book});
     }catch(err){
-        res.render('index', {title: "Home", user: req.user});
+        res.redirect("/");
     }
 });
 
@@ -34,6 +39,23 @@ router.get('/:type/:id/edit', async (req, res) => {
       res.render('books/edit', {book: book});
     }catch{
       res.redirect('/profile');
+    }
+});
+
+router.put('/:type/:id', async (req, res) => {
+    let user;
+    let book;
+    try{
+        user = await User.findById(req.user.id);
+        book = await Book.findById(req.params.id).populate("seller").exec();
+        user.cart.books.push(req.params.id);
+        await user.save();
+        res.redirect(`/books/${req.params.type}/${req.params.id}`); 
+    }catch{
+        if( user == null || book == null ){
+            res.redirect("/");
+        }
+        res.render("books/view", {book: book, added: false, errorMessage: "Error adding to cart"});
     }
 });
 

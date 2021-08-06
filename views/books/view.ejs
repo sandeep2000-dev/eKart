@@ -1,17 +1,33 @@
 <div class="container">
-    <div>
-        <img src="<%= book.coverImagePath%>" height = "300"/>
-    </div>
-    <div>
-        <h1>Book Details<h1>
-        <h1>Title: <%= book.title %></h1>
-        <h3>Author Name: <%= book.author %> </h3>
-        <h3>description: <%= book.description %> </h3>
-        <h3>Condition: <%= book.condition %> </h3>
-        <h1>Price: Rs <%= book.price %> </h1>
+    <% if( locals.errorMessage != null ) { %>
+    <p>errorMessage</p>
+    <% } %>
+    <div class="row mb-5">
+        <div class = "col-sm-4 border d-flex align-items-center">
+            <img src="<%= book.coverImagePath%>" class="img-fluid"/>
+        </div>
+        <div class="col-sm-6 border">
+            <h1>Book Details<h1>
+            <h2>Title: <%= book.title %></h2>
+            <h3>Author Name: <%= book.author %> </h3>
+            <h3>description: <%= book.description %> </h3>
+            <h3>Condition: <%= book.condition %> </h3>
+            <h1>Price: Rs <%= book.price %> </h1>
+        </div>
+        <div class="col-sm-2 d-grid gap-2">
+            <form action="/books/<%=book.booktype%>/<%=book.id%>?_method=PUT" method="POST">
+            <% if( added ) { %>
+                <button type = "submit" class = "btn btn-lg btn-primary disabled" aria-disabled="true">Add to Cart</button>
+            <% } else { %>
+                <button type = "submit" class = "btn btn-lg btn-primary">Add to Cart</button>
+            <% } %>
+            </form>
+            <button type="button" class="btn btn-secondary btn-lg">Buy</button>
+        </div>
     </div>
     <div>
         <h1>Seller details</h1>
         <h2>Name: <%= book.seller.name %></h2>
     </div>
+    <br><br>
 </div>
