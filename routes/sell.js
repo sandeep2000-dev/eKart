@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Book = require('../models/Book');
+const Electronic = require('../models/Electronic');
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
 router.get("/", (req, res) => {
@@ -12,6 +13,11 @@ router.get("/books", (req, res) => {
   res.render("sell/books/listing_form", { title: "Sell", book });
 });
 
+router.get("/electronics", (req, res) => {
+  const electronic = new Electronic();
+  res.render("sell/electronics/listing_form", { title: "Sell", electronic });
+});
+
 router.post('/books', async (req, res) => {
   const book = new Book({
     title: req.body.title,
@@ -21,7 +27,7 @@ router.post('/books', async (req, res) => {
     price: req.body.price,
     condition: req.body.condition,
     seller: req.user.id,
-  });
+});
 
   saveCover( book, req.body.cover );
 
@@ -33,12 +39,32 @@ router.post('/books', async (req, res) => {
   }
 });
 
-function saveCover(book, coverEncoded) {
-  if( coverEncoded == null ) return;
-  const cover = JSON.parse(coverEncoded);
-  if( cover != null &&  imageMimeTypes.includes(cover.type)) {
-    book.coverImage = new Buffer.from(cover.data, 'base64');
-    book.coverImageType = cover.type;
+router.post('/electronics', async (req, res) => {
+  const electronic = new Electronic({
+    productName: req.body.name,
+    description: req.body.description,
+    type: req.body.type,
+    price: req.body.price,
+    condition: req.body.condition,
+    seller: req.user.id,
+  });
+
+  saveCover( electronic, req.body.image );
+
+  try{
+    const newProduct = await electronic.save();
+    res.redirect(`/electronics/${newProduct.type}/${newProduct.id}`);
+  }catch{
+    res.render("sell/electronics/listing_form", { title: "Sell", electronic, errorMessage: "Error creating product" });
+  }
+});
+
+function saveCover(product, imageEncoded) {
+  if( imageEncoded == null ) return;
+  const image = JSON.parse(imageEncoded);
+  if( image != null &&  imageMimeTypes.includes(image.type)) {
+    product.Image = new Buffer.from(image.data, 'base64');
+    product.ImageType = image.type;
   }
 }
 

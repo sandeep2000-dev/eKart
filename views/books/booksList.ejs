@@ -2,10 +2,18 @@
     <% if( books.length != 0 ) { %>
     <h1><%= books[0].booktype %> Books</h1>
     <br>
+    <div class="flex-container">
     <% books.forEach( book => { %>
-            <a href = "/books/<%= book.booktype %>/<%=book.id%>" > <img src= <%= book.coverImagePath %> height="250" alt="Image"> </a>
-            <h3><%= book.title %></h3>
+        <div>
+            <div>
+                <a href = "/books/<%= book.booktype %>/<%=book.id%>" > <img src= <%= book.ImagePath %> height="250" alt="Image"> </a>
+            </div>
+            <div class="text-center">
+                <h4 class="text-break"><%= book.title %></h4>
+            </div>
+        </div>
     <% }); } else { %>
+    </div>
     <h1>No books yet</h1>
     <% } %>
 </div>

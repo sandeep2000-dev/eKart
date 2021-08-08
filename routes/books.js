@@ -42,7 +42,7 @@ router.get('/:type/:id/edit', async (req, res) => {
     }
 });
 
-router.put('/:type/:id', async (req, res) => {
+router.get('/:type/:id/addToCart', async (req, res) => {
     let user;
     let book;
     try{
@@ -96,12 +96,12 @@ router.delete("/:type/:id", async (req, res) => {
     }
 });
 
-function saveCover(book, coverEncoded) {
-    if( coverEncoded == null ) return;
-    const cover = JSON.parse(coverEncoded);
-    if( cover != null &&  imageMimeTypes.includes(cover.type)) {
-      book.coverImage = new Buffer.from(cover.data, 'base64');
-      book.coverImageType = cover.type;
+function saveCover(book, imageEncoded) {
+    if( imageEncoded == null ) return;
+    const image = JSON.parse(imageEncoded);
+    if( image != null &&  imageMimeTypes.includes(image.type)) {
+      book.Image = new Buffer.from(image.data, 'base64');
+      book.ImageType = image.type;
     }
 }
 

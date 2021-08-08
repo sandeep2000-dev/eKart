@@ -1,0 +1,19 @@
+<div class = "container-fluid">
+    <% if( electronics.length != 0 ) { %>
+    <h1><%= electronics[0].type %></h1>
+    <br>
+    <div class="flex-container">
+    <% electronics.forEach( electronic => { %>
+        <div>
+            <div>
+                <a href = "/electronics/<%= electronic.type %>/<%=electronic.id%>" > <img src= <%= electronic.ImagePath %> height="250" alt="Image"> </a>
+            </div>
+            <div class="text-center">
+                <h4 class="text-break"><%= electronic.productName %></h4>
+            </div>
+        </div>
+    <% }); } else { %>
+    </div>
+    <h1>No Products yet</h1>
+    <% } %>
+</div>

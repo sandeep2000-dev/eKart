@@ -1,0 +1,12 @@
+<div class="container mx-auto w-50">
+    <h1>Edit details</h1>
+    <% if(locals.errorMessage != null) { %>
+    <p><%= errorMessage %></p>
+    <% } %>
+    <form action = "/electronics/<%=electronic.type%>/<%=electronic.id%>/edit?_method=PUT" method="POST">
+        <%- include('../partials/electronicForm.ejs'); %>
+        <button type="submit" class = "btn btn-primary">Update</button>
+        <a class="btn btn-danger" href="/profile">Cancel</a>
+    </form>
+    <br><br>
+</div>

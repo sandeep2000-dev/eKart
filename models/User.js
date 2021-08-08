@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
     password: {type: String, default: "", required: true},
     cart: {
         books: [{type: mongoose.Schema.Types.ObjectId, ref: "Book"}],
+        electronics: [{type: mongoose.Schema.Types.ObjectId, ref: "Electronic"}],
     }
 });
 

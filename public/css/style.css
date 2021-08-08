@@ -1,0 +1,17 @@
+.details p {
+    font-size:x-large;
+}
+
+.details span {
+    font-weight: bolder;
+}
+
+.flex-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-container > div {
+    margin: 10px;
+    
+}
