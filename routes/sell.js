@@ -3,6 +3,7 @@ const router = express.Router();
 const Book = require('../models/Book');
 const Electronic = require('../models/Electronic');
 const Vehicle = require('../models/Vehicle');
+const Sport = require('../models/Sport');
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
 router.get("/", (req, res) => {
@@ -22,6 +23,11 @@ router.get("/electronics", (req, res) => {
 router.get("/vehicles", (req, res) => {
   const vehicle = new Vehicle();
   res.render("sell/vehicles/listing_form", { title: "Sell", vehicle });
+});
+
+router.get("/sports", (req, res) => {
+  const sport = new Sport();
+  res.render("sell/sports/listing_form", { title: "Sell", sport });
 });
 
 router.post('/books', async (req, res) => {
@@ -82,6 +88,26 @@ router.post('/vehicles', async (req, res) => {
     res.redirect(`/vehicles/${newProduct.type}/${newProduct.id}`);
   }catch{
     res.render("sell/vehicles/listing_form", { title: "Sell", vehicle, errorMessage: "Error creating product" });
+  }
+});
+
+router.post('/sports', async (req, res) => {
+  const sport = new Sport({
+    productName: req.body.name,
+    description: req.body.description,
+    type: req.body.type,
+    price: req.body.price,
+    condition: req.body.condition,
+    seller: req.user.id,
+  });
+
+  saveCover( sport, req.body.image );
+
+  try{
+    const newProduct = await sport.save();
+    res.redirect(`/sports/${newProduct.type}/${newProduct.id}`);
+  }catch{
+    res.render("sell/sports/listing_form", { title: "Sell", sport, errorMessage: "Error creating product" });
   }
 });
 

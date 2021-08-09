@@ -1,0 +1,19 @@
+<div class = "container-fluid">
+    <% if( sports.length != 0 ) { %>
+    <h1><%= sports[0].type %></h1>
+    <br>
+    <div class="flex-container">
+    <% sports.forEach( sport => { %>
+        <div>
+            <div>
+                <a href = "/sports/<%= sport.type %>/<%=sport.id%>" > <img src= <%= sport.ImagePath %> height="250" alt="Image"> </a>
+            </div>
+            <div class="text-center">
+                <h4 class="text-break"><%= sport.productName %></h4>
+            </div>
+        </div>
+    <% }); } else { %>
+    </div>
+    <h1>No Products yet</h1>
+    <% } %>
+</div>

@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
         books: [{type: mongoose.Schema.Types.ObjectId, ref: "Book"}],
         electronics: [{type: mongoose.Schema.Types.ObjectId, ref: "Electronic"}],
         vehicles: [{type: mongoose.Schema.Types.ObjectId, ref: "Vehicle"}],
+        sports: [{type: mongoose.Schema.Types.ObjectId, ref: "Sport"}],
     }
 });
 
