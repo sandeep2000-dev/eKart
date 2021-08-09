@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require("../models/User");
 const Electronic = require("../models/Electronic");
+const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
 router.get('/', (req, res) => {
     res.render("electronics/index");

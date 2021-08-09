@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Cart</h1><br>
-    <% if( user.cart.books.length != 0 || user.cart.electronics.length != 0 ) { %>
+    <% if( user.cart.books.length != 0 || user.cart.electronics.length != 0 || user.cart.vehicles.length != 0 ) { %>
     <% user.cart.books.forEach(book => { %>
         <a href = "/books/<%=book.booktype%>/<%=book.id%>" > <img src= <%= book.ImagePath %> height="150" alt="Image"> </a>
         <h3><%= book.title %></h3>
@@ -11,6 +11,12 @@
         <a href = "/electronics/<%=electronic.type%>/<%=electronic.id%>" > <img src= <%= electronic.ImagePath %> height="150" alt="Image"> </a>
         <h3><%= electronic.productName %></h3>
         <%- include("../partials/delete_form", {url: `/cart/electronics/${electronic.id}`}) %>
+        <br><br>
+    <% }); %>
+    <% user.cart.vehicles.forEach(vehicle => { %>
+        <a href = "/vehicles/<%=vehicle.type%>/<%=vehicle.id%>" > <img src= <%= vehicle.ImagePath %> height="150" alt="Image"> </a>
+        <h3><%= vehicle.productName %></h3>
+        <%- include("../partials/delete_form", {url: `/cart/vehicles/${vehicle.id}`}) %>
         <br><br>
     <% }); %>
     <% } else { %>

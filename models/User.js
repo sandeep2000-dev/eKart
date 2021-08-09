@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
     cart: {
         books: [{type: mongoose.Schema.Types.ObjectId, ref: "Book"}],
         electronics: [{type: mongoose.Schema.Types.ObjectId, ref: "Electronic"}],
+        vehicles: [{type: mongoose.Schema.Types.ObjectId, ref: "Vehicle"}],
     }
 });
 

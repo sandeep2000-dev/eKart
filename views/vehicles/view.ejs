@@ -1,0 +1,36 @@
+<div class="container">
+    <% if( locals.errorMessage != null ) { %>
+    <p>errorMessage</p>
+    <% } %>
+    <div class="row mb-5">
+        <div class = "col-sm-4 border d-flex align-items-center">
+            <img src="<%= vehicle.ImagePath%>" class="img-fluid"/>
+        </div>
+        <div class="col-sm-6 border">
+            <div>
+                <h1 class="text-center">Product Details</h1>
+            </div>
+            <div class="details">
+                <p><span>Product Name:</span> <%= vehicle.productName %><p>
+                <p><span>Condition:</span> <%= vehicle.condition %> </p>
+                <p class="text-break"><span>Description:</span> <%= vehicle.description %> <p>
+                <h2>Price: Rs <%= vehicle.price %> <h2>
+            </div>
+        </div>
+        <div class="col-sm-2 d-grid gap-2">
+            <% if( added ) { %>
+                <a href = "/vehicles/<%=vehicle.type%>/<%=vehicle.id%>/addToCart" class = "btn btn-lg btn-primary disabled" aria-disabled="true">Add to Cart</a>
+            <% } else { %>
+                <a href = "/vehicles/<%=vehicle.type%>/<%=vehicle.id%>/addToCart" class = "btn btn-lg btn-primary">Add to Cart</a>
+            <% } %>
+            <button type="button" class="btn btn-secondary btn-lg">Buy</button>
+        </div>
+    </div>
+    <div class = "border">
+        <div class="text-center">
+            <h1>Seller details</h1>
+        </div>
+        <h2>Name: <%= vehicle.seller.name %></h2>
+    </div>
+    <br><br>
+</div>

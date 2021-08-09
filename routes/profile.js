@@ -3,12 +3,14 @@ const router = express.Router();
 const Book = require('../models/Book');
 const User = require('../models/User');
 const Electronic = require('../models/Electronic');
+const Vehicle = require('../models/Vehicle');
 
 router.get('/', async (req, res) => {
     try{
         const books = await Book.find({seller: req.user.id});
         const electronics = await Electronic.find({seller: req.user.id});
-        res.render('profile/index', {user: req.user, books: books, electronics: electronics} );
+        const vehicles = await Vehicle.find({seller: req.user.id});
+        res.render('profile/index', {user: req.user, books: books, electronics: electronics, vehicles: vehicles} );
     }catch(err){
         res.redirect('/');
     }

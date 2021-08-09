@@ -1,0 +1,19 @@
+<div class = "container-fluid">
+    <% if( vehicles.length != 0 ) { %>
+    <h1><%= vehicles[0].type %></h1>
+    <br>
+    <div class="flex-container">
+    <% vehicles.forEach( vehicle => { %>
+        <div>
+            <div>
+                <a href = "/vehicles/<%= vehicle.type %>/<%=vehicle.id%>" > <img src= <%= vehicle.ImagePath %> height="250" alt="Image"> </a>
+            </div>
+            <div class="text-center">
+                <h4 class="text-break"><%= vehicle.productName %></h4>
+            </div>
+        </div>
+    <% }); } else { %>
+    </div>
+    <h1>No Products yet</h1>
+    <% } %>
+</div>
