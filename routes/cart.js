@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) =>{
     try{
-        const user = await User.findById(req.user.id).populate("cart.books").populate("cart.electronics").populate("cart.vehicles").populate("cart.sports").exec();
+        const user = await User.findById(req.user.id).populate("cart.books").populate("cart.electronics").populate("cart.vehicles").populate("cart.sports").populate("cart.others").exec();
         res.render("cart/index", {user: user});
     }
     catch{

@@ -4,12 +4,12 @@
     <br>
     <div class="flex-container">
     <% vehicles.forEach( vehicle => { %>
-        <div>
-            <div>
+        <div class="item-container">
+            <div class="image">
                 <a href = "/vehicles/<%= vehicle.type %>/<%=vehicle.id%>" > <img src= <%= vehicle.ImagePath %> height="250" alt="Image"> </a>
             </div>
-            <div class="text-center">
-                <h4 class="text-break"><%= vehicle.productName %></h4>
+            <div class="foot">
+                <h4><%= vehicle.productName %></h4>
             </div>
         </div>
     <% }); } else { %>

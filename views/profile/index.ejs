@@ -3,36 +3,68 @@
     <h3>Email : <%= user.email %></h3>
     <a class = "btn btn-primary" href = "/profile/edit">Edit</a>
     <br><br>
-    <% if( books.length != 0 || electronics.length != 0 || vehicles.length != 0 || sports.length != 0 ) { %>
+    <% if( books.length != 0 || electronics.length != 0 || vehicles.length != 0 || sports.length != 0 || others.length != 0 ) { %>
     <h2>List of Products you are selling </h2>
-    <div>
+    <div class="flex-container">
         <% books.forEach(book => { %>
-            <a href = "/books/<%=book.booktype%>/<%=book.id%>" > <img src= <%= book.ImagePath %> height="150" alt="Image"> </a>
-            <h3><%= book.title %></h3>
-            <a class="btn btn-primary" href="/books/<%=book.booktype%>/<%=book.id%>/edit">Edit</a>
-            <%- include("../partials/delete_form", {url : `/books/${book.booktype}/${book.id}`}) %>
-            <br><br>
+            <div class="item-container">
+                <div class="image">
+                    <a href = "/books/<%=book.booktype%>/<%=book.id%>" > <img src= <%= book.ImagePath %> height="250" alt="Image"> </a>
+                </div>
+                <div class="foot">
+                    <h3><%= book.title %></h3>
+                    <a class="btn btn-primary" href="/books/<%=book.booktype%>/<%=book.id%>/edit">Edit</a>
+                    <%- include("../partials/delete_form", {url : `/books/${book.booktype}/${book.id}`}) %>
+                </div>
+            </div>
         <% }); %>
         <% electronics.forEach(electronic => { %>
-            <a href = "/electronics/<%=electronic.type%>/<%=electronic.id%>" > <img src= <%= electronic.ImagePath %> height="150" alt="Image"> </a>
-            <h3><%= electronic.productName %></h3>
-            <a class="btn btn-primary" href="/electronics/<%=electronic.type%>/<%=electronic.id%>/edit">Edit</a>
-            <%- include("../partials/delete_form", {url : `/electronics/${electronic.type}/${electronic.id}`}) %>
-            <br><br>
+            <div class="item-container">
+                <div class="image">
+                    <a href = "/electronics/<%=electronic.type%>/<%=electronic.id%>" > <img src= <%= electronic.ImagePath %> height="250" alt="Image"> </a>
+                </div>
+                <div class="foot">
+                    <h3><%= electronic.productName %></h3>
+                    <a class="btn btn-primary" href="/electronics/<%=electronic.type%>/<%=electronic.id%>/edit">Edit</a>
+                    <%- include("../partials/delete_form", {url : `/electronics/${electronic.type}/${electronic.id}`}) %>
+                </div>
+            </div>
         <% }); %>
         <% vehicles.forEach(vehicle => { %>
-            <a href = "/vehicles/<%=vehicle.type%>/<%=vehicle.id%>" > <img src= <%= vehicle.ImagePath %> height="150" alt="Image"> </a>
-            <h3><%= vehicle.productName %></h3>
-            <a class="btn btn-primary" href="/vehicles/<%=vehicle.type%>/<%=vehicle.id%>/edit">Edit</a>
-            <%- include("../partials/delete_form", {url : `/vehicles/${vehicle.type}/${vehicle.id}`}) %>
-            <br><br>
+            <div class="item-container">
+                <div class="image">
+                    <a href = "/vehicles/<%=vehicle.type%>/<%=vehicle.id%>" > <img src= <%= vehicle.ImagePath %> height="250" alt="Image"> </a>
+                </div>
+                <div class="foot">
+                    <h3><%= vehicle.productName %></h3>
+                    <a class="btn btn-primary" href="/vehicles/<%=vehicle.type%>/<%=vehicle.id%>/edit">Edit</a>
+                    <%- include("../partials/delete_form", {url : `/vehicles/${vehicle.type}/${vehicle.id}`}) %>
+                </div>
+            </div>
         <% }); %>
         <% sports.forEach(sport => { %>
-            <a href = "/sports/<%=sport.type%>/<%=sport.id%>" > <img src= <%= sport.ImagePath %> height="150" alt="Image"> </a>
-            <h3><%= sport.productName %></h3>
-            <a class="btn btn-primary" href="/sports/<%=sport.type%>/<%=sport.id%>/edit">Edit</a>
-            <%- include("../partials/delete_form", {url : `/sports/${sport.type}/${sport.id}`}) %>
-            <br><br>
+            <div class="item-container">
+                <div class="image">
+                    <a href = "/sports/<%=sport.type%>/<%=sport.id%>" > <img src= <%= sport.ImagePath %> height="250" alt="Image"> </a>
+                </div>
+                <div class="foot">
+                    <h3><%= sport.productName %></h3>
+                    <a class="btn btn-primary" href="/sports/<%=sport.type%>/<%=sport.id%>/edit">Edit</a>
+                    <%- include("../partials/delete_form", {url : `/sports/${sport.type}/${sport.id}`}) %>
+                </div>
+            </div>
+        <% }); %>
+        <% others.forEach(other => { %>
+            <div class="item-container">
+                <div class="image">
+                    <a href = "/others/<%=other.id%>" > <img src= <%= other.ImagePath %> height="250" alt="Image"> </a>
+                </div>
+                <div class="foot">
+                    <h3><%= other.productName %></h3>
+                    <a class="btn btn-primary" href="/others/<%=other.id%>/edit">Edit</a>
+                    <%- include("../partials/delete_form", {url : `/others/${other.id}`}) %>
+                </div>
+            </div>
         <% }); %>
     </div>
     <% } %>

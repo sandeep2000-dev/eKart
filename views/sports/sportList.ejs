@@ -4,12 +4,12 @@
     <br>
     <div class="flex-container">
     <% sports.forEach( sport => { %>
-        <div>
-            <div>
+        <div class="item-container">
+            <div class="image">
                 <a href = "/sports/<%= sport.type %>/<%=sport.id%>" > <img src= <%= sport.ImagePath %> height="250" alt="Image"> </a>
             </div>
-            <div class="text-center">
-                <h4 class="text-break"><%= sport.productName %></h4>
+            <div class="foot">
+                <h4><%= sport.productName %></h4>
             </div>
         </div>
     <% }); } else { %>

@@ -1,0 +1,12 @@
+<div class="container mx-auto w-50">
+    <h1>List your Product details</h1>
+    <% if(locals.errorMessage != null) { %>
+    <p><%= errorMessage %></p>
+    <% } %>
+    <form action = "/sell/others" method = "POST">
+        <%- include('../../partials/otherForm.ejs'); %>
+        <button type="submit" class = "btn btn-primary">Create</button>
+        <a class="btn btn-danger" href="/sell">Cancel</a>
+    </form>
+    <br><br>
+</div>

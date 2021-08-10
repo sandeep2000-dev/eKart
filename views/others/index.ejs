@@ -1,0 +1,19 @@
+<div class = "container-fluid">
+    <% if( others.length != 0 ) { %>
+    <h1>Others</h1>
+    <br>
+    <div class="flex-container">
+    <% others.forEach( other => { %>
+        <div class="item-container" >
+            <div class="image">
+                <a href = "/others/<%=other.id%>" > <img src= <%= other.ImagePath %> height="250" alt="Image"> </a>
+            </div>
+            <div class="foot">
+                <h4><%= other.productName %></h4>
+            </div>
+        </div>
+    <% }); } else { %>
+    </div>
+    <h1>No Products yet</h1>
+    <% } %>
+</div>

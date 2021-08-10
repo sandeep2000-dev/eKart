@@ -5,6 +5,7 @@ const User = require('../models/User');
 const Electronic = require('../models/Electronic');
 const Vehicle = require('../models/Vehicle');
 const Sport = require('../models/Sport');
+const Other = require('../models/Other');
 
 router.get('/', async (req, res) => {
     try{
@@ -12,7 +13,8 @@ router.get('/', async (req, res) => {
         const electronics = await Electronic.find({seller: req.user.id});
         const vehicles = await Vehicle.find({seller: req.user.id});
         const sports = await Sport.find({seller: req.user.id});
-        res.render('profile/index', {user: req.user, books: books, electronics: electronics, vehicles: vehicles, sports: sports} );
+        const others = await Other.find({seller: req.user.id});
+        res.render('profile/index', {user: req.user, books: books, electronics: electronics, vehicles: vehicles, sports: sports, others: others} );
     }catch(err){
         res.redirect('/');
     }
